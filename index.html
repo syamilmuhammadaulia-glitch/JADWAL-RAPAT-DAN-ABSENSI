@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEST OSIS | Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="login-page" class="login-wrapper">
+        <div class="login-card">
+            <div class="brand-section">
+                <div class="logo-box">
+                    <img src="logobest.png" alt="Logo OSIS" class="brand-logo">
+                </div>
+                <div class="brand-info">
+                    <h2>BEST OSIS</h2>
+                    <p>Masa Jabatan 2025/2026</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Masukkan username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="••••••••">
+            </div>
+            <button class="btn-primary" onclick="handleLogin()">Masuk ke Sistem</button>
+            <p id="login-error" class="error-msg"></p>
+        </div>
+    </div>
+
+    <div id="main-page" class="dashboard-wrapper hidden">
+        <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
+
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">
+                    <img src="logobest.png" alt="L">
+                </div>
+                <span>BEST OSIS</span>
+            </div>
+            <nav class="side-nav">
+                <button onclick="showTab('beranda')" class="nav-item active" data-tab="beranda">Beranda</button>
+                <button onclick="showTab('jadwal')" class="nav-item" data-tab="jadwal">Jadwal Rapat</button>
+                <button onclick="showTab('laporan')" class="nav-item" data-tab="laporan">Laporan Saya</button>
+                <div class="admin-only hidden">
+                    <hr class="nav-divider">
+                    <p class="nav-label">ADMIN PANEL</p>
+                    <button onclick="showTab('admin')" class="nav-item" data-tab="admin">Kelola Sistem</button>
+                </div>
+            </nav>
+            <button class="btn-logout" onclick="handleLogout()">Keluar</button>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h2 id="tab-title">Beranda</h2>
+                <div id="welcome-text" class="user-profile">
+                    </div>
+            </header>
+
+            <div id="tab-beranda" class="tab-content">
+    <div class="grid-container" style="display: flex; flex-direction: column; gap: 20px;">
+        
+        <div class="card highlight-card">
+            <h3>⏳ Rapat Terdekat</h3>
+            <p id="countdown-timer">Memuat jadwal...</p>
+        </div>
+        <div id="admin-monitoring-section" class="hidden" style="margin-top: 25px;">
+        <h3 style="margin-bottom: 15px;">📊 Monitoring Kehadiran Pengurus</h3>
+        <div id="admin-stats-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px;">
+            </div>
+    </div>
+
+    <div id="user-stats" class="card stats-card hidden">
+        </div>
+
+        <div id="user-stats" class="card stats-card hidden">
+            <h3>Ringkasan Absensi</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 15px 0;">
+                <div style="text-align: center;">
+                    <small style="color: #166534; font-weight: bold;">Hadir</small>
+                    <div id="stat-hadir" style="font-size: 1.5rem; font-weight: bold; color: #166534;">0</div>
+                </div>
+                <div style="text-align: center;">
+                    <small style="color: #1e40af; font-weight: bold;">Izin</small>
+                    <div id="stat-izin" style="font-size: 1.5rem; font-weight: bold; color: #1e40af;">0</div>
+                </div>
+                <div style="text-align: center;">
+                    <small style="color: #854d0e; font-weight: bold;">Sakit</small>
+                    <div id="stat-sakit" style="font-size: 1.5rem; font-weight: bold; color: #854d0e;">0</div>
+                </div>
+                <div style="text-align: center;">
+                    <small style="color: #991b1b; font-weight: bold;">Alpha</small>
+                    <div id="stat-alpha" style="font-size: 1.5rem; font-weight: bold; color: #991b1b;">0</div>
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+
+            <h3>Persentase Kehadiran</h3>
+            <div class="progress-container">
+                <div id="attendance-percent" class="progress-bar" style="width: 0%">0%</div>
+            </div>
+            <p class="stats-info" style="margin-top: 10px; font-style: italic;">Semangat berkontribusi!</p>
+        </div>
+    </div>
+</div>
+
+            <div id="tab-jadwal" class="tab-content hidden">
+                <div class="section-header">
+                    <h3>Daftar Rapat</h3>
+                </div>
+                <div id="meeting-list" class="list-container"></div>
+            </div>
+
+            <div id="tab-laporan" class="tab-content hidden">
+    <div class="section-header">
+        <h3>Rekapitulasi Absensi</h3>
+        <div style="display: flex; gap: 10px;">
+            <button id="btn-toggle-report" class="btn-primary" onclick="generateReport()" style="width: auto; padding: 10px 20px;">
+                🔍 Tampilkan Laporan
+            </button>
+            <button class="btn-outline" onclick="exportToExcel()">💾 Ekspor Excel</button>
+        </div>
+    </div>
+
+    <div id="report-container" style="margin-top: 20px; display: flex; flex-direction: column; gap: 20px;">
+        <div class="card" style="text-align: center; color: #64748b; padding: 40px;">
+            Silakan klik tombol <strong>Tampilkan Laporan</strong> untuk memuat data absensi.
+        </div>
+    </div>
+</div>
+            <div id="tab-admin" class="tab-content hidden">
+    <div class="grid-container">
+        <div class="card">
+            <h3>Buat Jadwal Baru</h3>
+            <div class="form-group">
+                <input type="text" id="meeting-title" placeholder="Nama Rapat">
+            </div>
+            <div class="form-group">
+                <input type="datetime-local" id="meeting-date">
+            </div>
+            <button class="btn-primary" onclick="addMeeting()">Publikasikan Jadwal</button>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+            <h3>Daftar & Kelola Akun Pengurus</h3>
+            <p style="font-size: 0.8rem; color: var(--secondary); margin-bottom: 15px;">
+                Hanya Admin yang dapat melihat dan mengganti password.
+            </p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Pengurus</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-user-list">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="absen-modal" class="modal hidden">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h3 id="modal-meeting-title">Input Absensi</h3>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </header>
+            
+            <div id="absen-form-list" class="absen-scroll" style="max-height: 60vh; overflow-y: auto; padding: 15px;">
+                </div>
+
+            <div style="padding: 20px; border-top: 1px solid #eee;">
+                <button class="btn-primary" onclick="saveAbsensi()" style="width: 100%; border-radius: 10px;">
+                    💾 Simpan Semua Absensi
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

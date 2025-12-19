@@ -1,0 +1,305 @@
+/* --- ROOT & BASE --- */
+:root {
+    --primary: #1e3a8a;
+    --primary-light: #2563eb;
+    --secondary: #64748b;
+    --accent: #3b82f6;
+    --bg: #f8fafc;
+    --white: #ffffff;
+    --text: #1e293b;
+    --danger: #ef4444;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Inter', sans-serif; 
+}
+
+body { 
+    background-color: var(--bg); 
+    color: var(--text); 
+    line-height: 1.5; 
+    overflow-x: hidden; 
+}
+
+.hidden { display: none !important; }
+
+/* --- LOGIN UI --- */
+.login-wrapper {
+    height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    background: radial-gradient(circle at top left, var(--primary), var(--accent));
+    padding: 20px;
+}
+
+.login-card {
+    background: var(--white); 
+    padding: 2.5rem; 
+    border-radius: 24px;
+    width: 100%; 
+    max-width: 400px; 
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+}
+
+/* Header Login: Logo & Teks Samping */
+.brand-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 2rem;
+}
+
+.logo-box {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.brand-logo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.brand-info {
+    text-align: left;
+}
+
+.brand-info h2 { 
+    margin: 0; 
+    color: var(--primary); 
+    font-weight: 800; 
+    font-size: 1.25rem;
+    line-height: 1.2;
+}
+
+.brand-info p { 
+    margin: 0;
+    color: var(--secondary); 
+    font-size: 0.85rem; 
+    font-weight: 500;
+}
+
+/* --- FORM ELEMENTS --- */
+.form-group { text-align: left; margin-bottom: 1.25rem; }
+.form-group label { 
+    display: block; 
+    margin-bottom: 0.5rem; 
+    font-size: 0.85rem; 
+    font-weight: 600; 
+    color: var(--secondary); 
+}
+
+input, select { 
+    width: 100%; 
+    padding: 0.75rem 1rem; 
+    border: 1.5px solid #e2e8f0; 
+    border-radius: 12px; 
+    outline: none; 
+    transition: all 0.2s; 
+    font-size: 0.95rem;
+}
+
+input:focus, select:focus { 
+    border-color: var(--accent); 
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); 
+}
+
+/* --- DASHBOARD LAYOUT --- */
+.dashboard-wrapper { display: flex; min-height: 100vh; position: relative; }
+
+.sidebar {
+    width: 280px; 
+    background: var(--primary); 
+    color: white;
+    padding: 1.5rem; 
+    display: flex; 
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+
+.sidebar-header { 
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 1.5rem; 
+    margin-bottom: 2rem; 
+    border-bottom: 1px solid rgba(255,255,255,0.1); 
+}
+
+.logo-small {
+    width: 35px;
+    height: 35px;
+    background: white;
+    border-radius: 8px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-small img { width: 100%; height: auto; }
+
+.sidebar-header span { font-weight: 700; font-size: 1.1rem; }
+
+.nav-item {
+    width: 100%; 
+    padding: 0.85rem 1.25rem; 
+    background: none; 
+    border: none;
+    color: #94a3b8; 
+    text-align: left; 
+    cursor: pointer; 
+    border-radius: 12px;
+    margin-bottom: 0.5rem; 
+    transition: all 0.2s; 
+    font-weight: 500;
+}
+
+.nav-item:hover { color: white; background: rgba(255,255,255,0.05); }
+.nav-item.active { background: var(--accent); color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+
+/* --- MAIN CONTENT --- */
+.main-content { flex-grow: 1; padding: 2.5rem; overflow-y: auto; background: var(--bg); }
+.top-bar { margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+.top-bar h2 { font-size: 1.75rem; font-weight: 700; color: var(--primary); }
+
+/* --- CARDS --- */
+.card { 
+    background: var(--white); 
+    padding: 1.75rem; 
+    border-radius: 20px;
+    box-shadow: var(--shadow); 
+    margin-bottom: 1.5rem; 
+    border: 1px solid #f1f5f9;
+}
+
+.highlight-card { 
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); 
+    color: white; 
+    border: none;
+}
+
+/* --- BUTTONS --- */
+.btn-primary { 
+    width: 100%;
+    background: var(--primary); 
+    color: white; 
+    padding: 0.9rem; 
+    border: none; 
+    border-radius: 12px; 
+    cursor: pointer; 
+    font-weight: 600; 
+    transition: all 0.3s;
+}
+
+.btn-primary:hover { background: var(--primary-light); transform: translateY(-2px); }
+
+.btn-logout {
+    margin-top: auto;
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-logout:hover { background: var(--danger); color: white; }
+/* Container Meeting */
+.meeting-item-pro {
+    border: none;
+    border-left: 6px solid #2563eb;
+    background: #ffffff;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+}
+
+.meeting-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.meeting-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.meeting-info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #1e293b;
+}
+
+.meeting-info p {
+    margin: 4px 0 0 0;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* Tombol Modern */
+.btn-absen-modern {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.btn-absen-modern:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+}
+
+.btn-absen-modern:active {
+    transform: translateY(0);
+}
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .sidebar { position: fixed; left: 0; transform: translateX(-100%); }
+    .sidebar.active { transform: translateX(0); }
+    .main-content { padding: 5rem 1rem 1rem 1rem; }
+    .brand-section { flex-direction: column; text-align: center; }
+    .brand-info { text-align: center; }
+}
+.btn-danger-outline {
+    background: transparent;
+    color: #ef4444;
+    border: 1px solid #ef4444;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+}
+
+.btn-danger-outline:hover {
+    background: #fee2e2;
+    transform: scale(1.05);
+}
+
+.btn-danger-outline:active {
+    transform: scale(0.95);
+}
