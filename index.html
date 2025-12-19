@@ -63,52 +63,55 @@
                     </div>
             </header>
 
-            <div id="tab-beranda" class="tab-content">
+           <div id="tab-beranda" class="tab-content">
     <div class="grid-container" style="display: flex; flex-direction: column; gap: 20px;">
         
         <div class="card highlight-card">
             <h3>⏳ Rapat Terdekat</h3>
             <p id="countdown-timer">Memuat jadwal...</p>
         </div>
-        <div id="admin-monitoring-section" class="hidden" style="margin-top: 25px;">
-        <h3 style="margin-bottom: 15px;">📊 Monitoring Kehadiran Pengurus</h3>
-        <div id="admin-stats-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px;">
-            </div>
-    </div>
 
-    <div id="user-stats" class="card stats-card hidden">
+        <div id="admin-monitoring-section" class="hidden">
+            <h3 style="margin-bottom: 15px;">📊 Monitoring Kehadiran Pengurus</h3>
+            <div id="admin-stats-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px;">
+                </div>
         </div>
 
         <div id="user-stats" class="card stats-card hidden">
-            <h3>Ringkasan Absensi</h3>
+            <h3>Ringkasan Absensi Anda</h3>
             
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 15px 0;">
-                <div style="text-align: center;">
-                    <small style="color: #166534; font-weight: bold;">Hadir</small>
-                    <div id="stat-hadir" style="font-size: 1.5rem; font-weight: bold; color: #166534;">0</div>
+                <div style="text-align: center; background: #f0fdf4; padding: 10px; border-radius: 8px;">
+                    <small style="color: #166534; font-weight: bold; font-size: 0.7rem;">HADIR</small>
+                    <div id="stat-hadir" style="font-size: 1.2rem; font-weight: bold; color: #166534;">0</div>
                 </div>
-                <div style="text-align: center;">
-                    <small style="color: #1e40af; font-weight: bold;">Izin</small>
-                    <div id="stat-izin" style="font-size: 1.5rem; font-weight: bold; color: #1e40af;">0</div>
+                <div style="text-align: center; background: #eff6ff; padding: 10px; border-radius: 8px;">
+                    <small style="color: #1e40af; font-weight: bold; font-size: 0.7rem;">IZIN</small>
+                    <div id="stat-izin" style="font-size: 1.2rem; font-weight: bold; color: #1e40af;">0</div>
                 </div>
-                <div style="text-align: center;">
-                    <small style="color: #854d0e; font-weight: bold;">Sakit</small>
-                    <div id="stat-sakit" style="font-size: 1.5rem; font-weight: bold; color: #854d0e;">0</div>
+                <div style="text-align: center; background: #fffbeb; padding: 10px; border-radius: 8px;">
+                    <small style="color: #854d0e; font-weight: bold; font-size: 0.7rem;">SAKIT</small>
+                    <div id="stat-sakit" style="font-size: 1.2rem; font-weight: bold; color: #854d0e;">0</div>
                 </div>
-                <div style="text-align: center;">
-                    <small style="color: #991b1b; font-weight: bold;">Alpha</small>
-                    <div id="stat-alpha" style="font-size: 1.5rem; font-weight: bold; color: #991b1b;">0</div>
+                <div style="text-align: center; background: #fef2f2; padding: 10px; border-radius: 8px;">
+                    <small style="color: #991b1b; font-weight: bold; font-size: 0.7rem;">ALPHA</small>
+                    <div id="stat-alpha" style="font-size: 1.2rem; font-weight: bold; color: #991b1b;">0</div>
                 </div>
             </div>
 
             <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
 
             <h3>Persentase Kehadiran</h3>
-            <div class="progress-container">
-                <div id="attendance-percent" class="progress-bar" style="width: 0%">0%</div>
+            <div class="progress-container" style="background: #e2e8f0; border-radius: 10px; overflow: hidden; height: 20px;">
+                <div id="attendance-percent" class="progress-bar" style="width: 0%; height: 100%; background: #2563eb; color: white; text-align: center; font-size: 0.8rem; line-height: 20px; transition: width 0.5s ease;">
+                    0%
+                </div>
             </div>
-            <p class="stats-info" style="margin-top: 10px; font-style: italic;">Semangat berkontribusi!</p>
+            <p class="stats-info" style="margin-top: 10px; font-style: italic; font-size: 0.8rem; color: #64748b;">
+                *Dihitung berdasarkan jumlah kehadiran dari total rapat.
+            </p>
         </div>
+
     </div>
 </div>
 
